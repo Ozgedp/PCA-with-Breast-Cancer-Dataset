@@ -1,8 +1,8 @@
-In this project, I aimed to decrease the dimension of the dataset,by applying Principal Component Analysis technique.
-I used just the most important important 3 features to apply PCA in the dataset instead of using the whole dataset.
+In this project, I aimed to decrease the dimension of the dataset, by applying Principal Component Analysis technique.
+I used just the most important 3 features to apply PCA in the dataset instead of using the whole dataset.
 
 - First I chose the most important 3 features from a dataset by using domain knowledge,
-- Then I applied dimensionality reduction technique, PCA, on these features.
+- Then I applied dimensionality reduction technique, PCA, on the important features.
 
 As a result, it shows that PCA can successfully reduce the dimension of these 3 important features while
 the first and the second eigenvectors cover %98 of the variability of the data in total.
