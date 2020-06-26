@@ -64,7 +64,12 @@ Here is a correlation heatmap which shows that most if these features are highly
 
 ![Figure 1, Output](https://github.com/Ozgedp/PCA-with-Breast-Cancer-Dataset/blob/master/images/2_Correlation_heatmap.png)  
 
+
 Finally, I expect higher numeric values for mean values of the area, concave points, compactness for malign cell nuclei compare to benign cell nuclei and I will choose only these features as the most important features for this classification problem. 
+
+![Figure 1, Output](https://github.com/Ozgedp/PCA-with-Breast-Cancer-Dataset/blob/master/images/4_statistics.png)  
+
+Table above shows descriptive staistics of choosen features which give us an idea about how these features are dispersed. From the table, while the maximum value of area_mean is 2501, compacness_mean is 0.3454. It shows that all of these features needs to be standardized or normalized before applying PCA. 
 
 # Univariate Analysis
 
