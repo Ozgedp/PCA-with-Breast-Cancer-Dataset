@@ -73,12 +73,53 @@ Table above shows descriptive staistics of choosen features which give us an ide
 
 # Univariate Analysis
 
+Let’s start with some univariate analysis. Figure 1 shows the scatter plots for the predictor versus the mean of the area or concave points or compactness features. There are some overlapping points between benign (‘B’) and malign (‘M’) cells so that it is not easy to distinguish. For example, in the graph titled ‘area vs diagnosis’, when we have a sample that the nucleus area ranges between 500 and 1000, we can not clearly say whether it is malign or benign.
+
+![Figure XXX, Output](https://github.com/Ozgedp/PCA-with-Breast-Cancer-Dataset/blob/master/images/4_statistics.png)  
+
+Figure 1. 2D Scatter plots for the important features ‘area’, ‘concave points’ and ‘compactness’ versus diagnosis. In diagnosis axis, ‘B’ shows benign samples as green circles, ‘M’ shows malign samples as red circles. It is evident that the only feature itself is not enough to differentiate categories; thus, it is a good idea to apply bivariate analysis. 
+
 # Bivariate Analysis
+
+Figure 2 shows scatter plots by using every combination of area, concave points and compactness and coloured by the diagnosis of the categories.
+
+Figure 2. Pair plots compares probability density functions and scatter plots for chosen features coloured by their category.
+
+I used density plot (a continuous form of a histogram) in the diagonal graphs instead of histogram because at the histogram it was not easy to distinguish overlapping frequencies.
+
+From Figure 2, we can see that we can better distinguish the points for classes when we used two important features. The diagonal graphs show the distribution of malign and benign sample values by feature. Each class have a different distribution, and none of them shows us normal distribution; thus, it might be challenging to generalize by statistical models.
+
+At Figure 2, most of the cases the distributions are slightly right-skewed, it states that most of the malign cases mean of the concave points are around 0.1, and the number of malign cases decreases when we have concave points mean value more than 0,1. The distribution states that for malign samples, nucleus area, compactness and concave points are more likely to be larger than benign samples, which is expected.
+
+As a result of the distribution of the graphs, we might do log transformation to have a distribution close to Gaussian Distribution. Area feature has values between 143 and 2501, while compactness and concave points values are between 0 and 1. Thus, we can have a logarithmic transformation for just “area” feature.
+
+From Figure 2, we can also get a general idea about pairwise correlation for the chosen features. When we look at scatter plots, all of our features are positively correlated with each other. For example, if we look at the scatter plot on the top right corner of Figure 2, we can see that while area increases, the number of concave points also increases.
+
 
 # Multivariate Analysis
 
+At the same time, there are some overlapping areas so that increasing dimension might give us better results. We can do a multivariate analysis by using all three predictors as a dimension.
+
+Figure 3. 3D scatter plot for features ‘area’, ‘concave points’ and ‘compactness’, coloured by diagnosis. Green circles show benign samples, red circles show samples malign samples.
+In figure 3, all the features are normalized by using Z score. Before normalization the range of the area was between 143 and 2501, and no it is between 5 and -2. This normalization results better scaled graph and can give us better performance when we use a statistical model to make prediction.
+Although there are some overlapping areas in the Figure 3, using three features increases the separation between classes and it can give us better prediction accuracies compare to bivariate analysis.
+
+
 # PCA Application
 
+I first standardized the dataset, and applied PCA. Figure 4 shows the plot of the obtained eigenvectors.
+Here is the code for PCA and the plot for 1st eigenvector vs 2nd eigenvector.
+
+Figure 4. Graph of first eigenvector versus second eigenvector. The graph coloured by classes, yellow circles shows ‘Benign’ classes, blue circles shows ‘Malign’ classes.
+
 Explained variance ratios for the first principal component and second principal components are 0.815, 0.167 respectively. It shows that the first principal component explains 81% variance in our given three features. If we need more than 81% variance, we should also use the second component. First and second principal component together explains 98% variance of the given features. Thus, there is not much need to use three features. Instead, we can use the first and the second eigenvectors and cover 98% variance at the data. When we reduce the dimension, we will reduce the complexity of our model so that we can have better model performances.
+
+When I print the principal components, it returns 2 x 3 matrix. The first row shows the first eigenvector, the second row shows the second eigenvector. Here is the code that outputs eigenvectors.
+
+To understand the correlation between eigenvectors and the features, we can have a look at the correlation heapmap at Figure 5.
+Here is the code to plot correlation heatmap for eigenvectors and predictors.
+
+Figure 5. Correlation heatmap for eigenvectors versus predictors
+At Figure 5, it is not easy to understand which feature has the most effect on eigenvectors, but we can say that while the first eigenvector is positively correlated to each predictor, the second eigenvector has mixed correlation with predictors.
 
 
